@@ -8,7 +8,7 @@
 // do not load CSS for this plugin
 Plugins.sort_profiles.no_css = true;
 
-Plugins.more_steps.new_steps = [1000000, 10000000, 100000000, 1000000000];
+Plugins.more_steps_defaults = [1000000, 10000000, 100000000, 1000000000];
 
 // Initialize the plugin
 Plugins.sort_profiles.init = async function () {
@@ -48,7 +48,7 @@ Plugins.sort_profiles.init = async function () {
     if (!sel[0] || !sel[0].length)
       return;
 
-    list.forEach((step) => {
+    (Plugins.more_steps_custom ?? Plugins.more_steps_defaults).forEach((step) => {
       let newStep = document.createElement("option");
       newStep.value = step;
       newStep.textContent = parseMagnitude(step);
