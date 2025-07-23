@@ -6,7 +6,7 @@
  */
 
 // do not load CSS for this plugin
-Plugins.sort_profiles.no_css = true;
+Plugins.more_steps.no_css = true;
 
 Plugins.more_steps_defaults = [1000000, 10000000, 100000000, 1000000000];
 
@@ -52,6 +52,7 @@ Plugins.sort_profiles.init = async function () {
       let newStep = document.createElement("option");
       newStep.value = step;
       newStep.textContent = parseMagnitude(step);
+      console.log("Adding step: " + parseMagnitude(step) + " with value: " + step);
       sel.append(step);
     });
 
