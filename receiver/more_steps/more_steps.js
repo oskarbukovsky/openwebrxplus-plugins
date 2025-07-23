@@ -8,7 +8,7 @@
 // do not load CSS for this plugin
 Plugins.more_steps.no_css = true;
 
-Plugins.more_steps.more_steps_defaults = [1000000, 10000000, 100000000, 1000000000];
+Plugins.more_steps.more_steps_defaults = [100000, 1000000, 10000000, 100000000]; // 100kHz, 1MHz, 10MHz, 100MHz
 
 // Initialize the plugin
 Plugins.more_steps.init = async function () {
@@ -39,21 +39,19 @@ Plugins.more_steps.init = async function () {
     return value + magnitudes[magnitude];
   }
 
-  // Catch the event, when server sends us the profiles.
-  $(document).on('server:profiles:after', function (e, data) {
+  // Catch the event, when client is ready.
+  $(document).on('server:client:after', function (e, data) {
     var sel = $('#openwebrx-tuning-step-listbox');
 
     // if the list is empty, return
     if (!sel[0] || !sel[0].length)
       return;
 
-    console.log("Running plugin");
     (Plugins.more_steps_custom ?? Plugins.more_steps.more_steps_defaults).forEach((step) => {
       let newStep = document.createElement("option");
       newStep.value = step;
       newStep.textContent = parseMagnitude(step);
-      console.log("Adding step: " + parseMagnitude(step) + " with value: " + step);
-      sel[0].append(step);
+      sel.append($("<option></option>").val(step).text(parseMagnitude(step)));
     });
 
     var selected = sel.val();
@@ -73,7 +71,7 @@ Plugins.more_steps.init = async function () {
     // now reset the list and fill it with the new extended one
     sel.html('').append(list);
 
-    // set the selected profile from our cached value
+    // set the selected step from our cached value
     sel.val(selected);
   });
 
