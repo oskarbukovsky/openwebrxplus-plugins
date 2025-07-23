@@ -39,41 +39,38 @@ Plugins.more_steps.init = async function () {
     return value + magnitudes[magnitude];
   }
 
-  // Catch the event, when client is ready.
-  $(document).on('load', function (e, data) {
-    var sel = $('#openwebrx-tuning-step-listbox');
+  var sel = $('#openwebrx-tuning-step-listbox');
 
-    // if the list is empty, return
-    if (!sel[0] || !sel[0].length)
-      return;
+  // if the list is empty, return
+  if (!sel[0] || !sel[0].length)
+    return;
 
-    (Plugins.more_steps_custom ?? Plugins.more_steps.more_steps_defaults).forEach((step) => {
-      let newStep = document.createElement("option");
-      newStep.value = step;
-      newStep.textContent = parseMagnitude(step);
-      sel.append($("<option></option>").val(step).text(parseMagnitude(step)));
-    });
-
-    var selected = sel.val();
-    var list = sel.find('option');
-
-    // sort the list of steps
-    list.sort(function (a, b) {
-      return $(a).val()
-        .localeCompare(
-          $(b).val(), undefined, {
-            numeric: true,
-            sensitivity: 'base'
-          }
-        );
-    });
-
-    // now reset the list and fill it with the new extended one
-    sel.html('').append(list);
-
-    // set the selected step from our cached value
-    sel.val(selected);
+  (Plugins.more_steps_custom ?? Plugins.more_steps.more_steps_defaults).forEach((step) => {
+    let newStep = document.createElement("option");
+    newStep.value = step;
+    newStep.textContent = parseMagnitude(step);
+    sel.append($("<option></option>").val(step).text(parseMagnitude(step)));
   });
+
+  var selected = sel.val();
+  var list = sel.find('option');
+
+  // sort the list of steps
+  list.sort(function (a, b) {
+    return $(a).val()
+      .localeCompare(
+        $(b).val(), undefined, {
+          numeric: true,
+          sensitivity: 'base'
+        }
+      );
+  });
+
+  // now reset the list and fill it with the new extended one
+  sel.html('').append(list);
+
+  // set the selected step from our cached value
+  sel.val(selected);
 
   // return true to validate plugin load
   return true;
