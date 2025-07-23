@@ -40,7 +40,7 @@ Plugins.more_steps.init = async function () {
   }
 
   // Catch the event, when server sends us the profiles.
-  // $(document).on('server:profiles:after', function (e, data) {
+  $(document).on('server:profiles:after', function (e, data) {
     var sel = $('#openwebrx-tuning-step-listbox');
 
     // if the list is empty, return
@@ -75,7 +75,7 @@ Plugins.more_steps.init = async function () {
 
     // set the selected profile from our cached value
     sel.val(selected);
-  // });
+  });
 
   // return true to validate plugin load
   return true;
