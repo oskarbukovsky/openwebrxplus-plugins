@@ -40,7 +40,7 @@ Plugins.more_steps.init = async function () {
   }
 
   // Catch the event, when client is ready.
-  $(document).on('server:client:after', function (e, data) {
+  $(document).on('load', function (e, data) {
     var sel = $('#openwebrx-tuning-step-listbox');
 
     // if the list is empty, return
