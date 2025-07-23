@@ -8,10 +8,10 @@
 // do not load CSS for this plugin
 Plugins.more_steps.no_css = true;
 
-Plugins.more_steps_defaults = [1000000, 10000000, 100000000, 1000000000];
+Plugins.more_steps.more_steps_defaults = [1000000, 10000000, 100000000, 1000000000];
 
 // Initialize the plugin
-Plugins.sort_profiles.init = async function () {
+Plugins.more_steps.init = async function () {
 
   // Check if utils plugin is loaded
   if (!Plugins.isLoaded('utils', 0.1)) {
@@ -20,7 +20,7 @@ Plugins.sort_profiles.init = async function () {
 
     // check again if it was loaded successfully
     if (!Plugins.isLoaded('utils', 0.1)) {
-      console.error('soft_profiles plugin depends on "utils >= 0.1".');
+      console.error('more_steps plugin depends on "utils >= 0.1".');
       return false;
     } else {
       Plugins._debug('Plugin "utils" has been loaded as dependency.');
@@ -29,7 +29,7 @@ Plugins.sort_profiles.init = async function () {
 
   //Helper function to show units
   function parseMagnitude(value) {
-    const magnitudes = ["Hz", "kHz", "MHZ", "GHZ", "THZ"]; //Idk who will use THZ, but anyway..
+    const magnitudes = ["Hz", "kHz", "MHz", "GHz", "THz"]; //Idk who will use THZ, but anyway..
     let result = value;
     let magnitude = 0;
     while (value >= 1000) {
@@ -39,7 +39,6 @@ Plugins.sort_profiles.init = async function () {
     return magnitudes[magnitude];
   }
 
-
   // Catch the event, when server sends us the profiles.
   $(document).on('server:profiles:after', function (e, data) {
     var sel = $('#openwebrx-tuning-step-listbox');
@@ -48,7 +47,7 @@ Plugins.sort_profiles.init = async function () {
     if (!sel[0] || !sel[0].length)
       return;
 
-    (Plugins.more_steps_custom ?? Plugins.more_steps_defaults).forEach((step) => {
+    (Plugins.more_steps.custom_steps ?? Plugins.more_steps.more_steps_defaults).forEach((step) => {
       let newStep = document.createElement("option");
       newStep.value = step;
       newStep.textContent = parseMagnitude(step);
