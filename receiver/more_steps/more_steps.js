@@ -36,7 +36,7 @@ Plugins.more_steps.init = async function () {
       value /= 1000;
       magnitude++;
     }
-    return value + " " + magnitudes[magnitude];
+    return value + magnitudes[magnitude];
   }
 
   // Catch the event, when server sends us the profiles.
@@ -53,7 +53,7 @@ Plugins.more_steps.init = async function () {
       newStep.value = step;
       newStep.textContent = parseMagnitude(step);
       console.log("Adding step: " + parseMagnitude(step) + " with value: " + step);
-      sel.append(step);
+      sel[0].append(step);
     });
 
     var selected = sel.val();
