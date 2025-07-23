@@ -60,6 +60,7 @@ Each plugin is documented in its own folder.
 |[colorful_spectrum](receiver/colorful_spectrum)|Colorize the spectrum analyzer|
 |[connect_notify](receiver/connect_notify)|Send/receive notifications on user connect/disconnect|
 |[sort_profiles](receiver/sort_profiles)|Sort profiles by name|
+|[more_steps](reciever/more_steps)|Add custom step|
 |[utils](receiver/utils)|Utility plugin, required by many plugins|
 |[notify](receiver/notify)|Notification utility plugin|
 |[example](receiver/example)|Example plugin for developers|
