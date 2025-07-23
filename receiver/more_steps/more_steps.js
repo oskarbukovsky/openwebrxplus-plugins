@@ -48,7 +48,7 @@ Plugins.more_steps.init = async function () {
       return;
 
     console.log("Running plugin");
-    (Plugins.more_steps.custom_steps ?? Plugins.more_steps.more_steps_defaults).forEach((step) => {
+    (Plugins.more_steps_custom ?? Plugins.more_steps.more_steps_defaults).forEach((step) => {
       let newStep = document.createElement("option");
       newStep.value = step;
       newStep.textContent = parseMagnitude(step);
@@ -70,8 +70,8 @@ Plugins.more_steps.init = async function () {
         );
     });
 
-    // now reset the list and fill it with the new sorted one
-    sel.append(list);
+    // now reset the list and fill it with the new extended one
+    sel.html('').append(list);
 
     // set the selected profile from our cached value
     sel.val(selected);

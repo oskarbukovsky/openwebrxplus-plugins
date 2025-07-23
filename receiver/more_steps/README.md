@@ -14,6 +14,7 @@ Add this lines in your `init.js` file:
 
 ```js
 await Plugins.load('https://0xaf.github.io/openwebrxplus-plugins/receiver/utils/utils.js');
+Plugins.more_steps_custom = [1000000, 10000000, 25000000, 100000000]; //OPTIONAL: 1MHz, 10MHz, 25Mhz, 100MHz
 Plugins.load('https://oskarbukovsky.github.io/openwebrxplus-plugins/receiver/more_steps/more_steps.js');
 ```
 
