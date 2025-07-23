@@ -47,6 +47,7 @@ Plugins.more_steps.init = async function () {
     if (!sel[0] || !sel[0].length)
       return;
 
+    console.log("Running plugin");
     (Plugins.more_steps.custom_steps ?? Plugins.more_steps.more_steps_defaults).forEach((step) => {
       let newStep = document.createElement("option");
       newStep.value = step;
